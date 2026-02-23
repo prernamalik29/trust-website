@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Olympian Anuj International Trust</title>
+    <meta name="description" content="Support our mission by making a donation. Your contribution helps us in sports development, healthcare, and feeding children.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ==================== TOP BAR ==================== -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <ul class="top-info">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:olympiananujinternationaltrust@gmail.com">olympiananujinternationaltrust@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+919811260140">+91 9811260140</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Muzaffarnagar, U.P., India</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                    <a href="donate.html" class="top-donate-link active">
+                        <i class="fas fa-heart"></i> Donate
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN NAVIGATION ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <img src="assets/logo/OLYMPIAN_ANUJ_INTERNATIONAL_TRUST_-_Logo-without-background.png" alt="Olympian Anuj International Trust">
+                    <span class="logo-text">Olympian Anuj<br><small>International Trust</small></span>
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="causes.html" class="nav-link">Causes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html" class="nav-link">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Donate Button -->
+                <a href="donate.html" class="btn btn-donate active">Donate Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== PAGE HEADER ==================== -->
+    <section class="page-header donate-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-overlay"></div>
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Make a Donation</h1>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Donate</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DONATION INTRO ==================== -->
+    <section class="donate-intro section-padding">
+        <div class="container">
+            <div class="donate-intro-content text-center reveal">
+                <span class="section-tagline">Support Our Mission</span>
+                <h2 class="section-title">Your Generosity Changes Lives</h2>
+                <p class="section-subtitle">Every contribution, no matter how small, helps us bring hope to those in need. Your donation supports sports development, healthcare access, and nutrition for underprivileged children.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DONATION OPTIONS ==================== -->
+    <section class="donate-options section-padding bg-light">
+        <div class="container">
+            <div class="donate-grid">
+                <!-- Donation Form -->
+                <div class="donate-form-wrapper reveal">
+                    <h3>Select Donation Amount</h3>
+                    
+                    <!-- Amount Selection -->
+                    <div class="amount-options">
+                        <button class="amount-btn" data-amount="500">₹500</button>
+                        <button class="amount-btn" data-amount="1000">₹1,000</button>
+                        <button class="amount-btn active" data-amount="2500">₹2,500</button>
+                        <button class="amount-btn" data-amount="5000">₹5,000</button>
+                        <button class="amount-btn" data-amount="10000">₹10,000</button>
+                        <button class="amount-btn" data-amount="25000">₹25,000</button>
+                    </div>
+
+                    <div class="custom-amount">
+                        <label for="customAmount">Or enter custom amount:</label>
+                        <div class="custom-amount-input">
+                            <span class="currency">₹</span>
+                            <input type="number" id="customAmount" placeholder="Enter amount" min="100">
+                        </div>
+                    </div>
+
+                    <!-- Cause Selection -->
+                    <div class="cause-selection">
+                        <h4>Select a Cause (Optional)</h4>
+                        <div class="cause-options">
+                            <label class="cause-option">
+                                <input type="radio" name="cause" value="general" checked>
+                                <span class="cause-label">
+                                    <i class="fas fa-globe"></i>
+                                    Where Most Needed
+                                </span>
+                            </label>
+                            <label class="cause-option">
+                                <input type="radio" name="cause" value="sports">
+                                <span class="cause-label">
+                                    <i class="fas fa-running"></i>
+                                    Sports Events
+                                </span>
+                            </label>
+                            <label class="cause-option">
+                                <input type="radio" name="cause" value="healthcare">
+                                <span class="cause-label">
+                                    <i class="fas fa-heartbeat"></i>
+                                    Healthcare
+                                </span>
+                            </label>
+                            <label class="cause-option">
+                                <input type="radio" name="cause" value="food">
+                                <span class="cause-label">
+                                    <i class="fas fa-utensils"></i>
+                                    Food for Children
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Donation Type -->
+                    <div class="donation-type">
+                        <label class="type-option">
+                            <input type="radio" name="donationType" value="onetime" checked>
+                            <span>One-Time Donation</span>
+                        </label>
+                        <label class="type-option">
+                            <input type="radio" name="donationType" value="monthly">
+                            <span>Monthly Donation</span>
+                        </label>
+                    </div>
+
+                    <!-- Donor Information -->
+                    <div class="donor-info">
+                        <h4>Your Information</h4>
+                        <form id="donationForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="donorName">Full Name *</label>
+                                    <input type="text" id="donorName" required placeholder="Your full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="donorEmail">Email *</label>
+                                    <input type="email" id="donorEmail" required placeholder="Your email">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="donorPhone">Phone *</label>
+                                    <input type="tel" id="donorPhone" required placeholder="Your phone number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="donorPAN">PAN Number (for 80G)</label>
+                                    <input type="text" id="donorPAN" placeholder="For tax exemption">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="donorAddress">Address</label>
+                                <textarea id="donorAddress" rows="2" placeholder="Your address"></textarea>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="anonymous">
+                                <label for="anonymous">Make my donation anonymous</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-donate-submit">
+                                <i class="fas fa-heart"></i>
+                                <span>Donate Now</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Donation Sidebar -->
+                <div class="donate-sidebar">
+                    <!-- Impact Card -->
+                    <div class="donate-impact-card reveal">
+                        <h3><i class="fas fa-chart-line"></i> Your Impact</h3>
+                        <ul class="impact-list">
+                            <li>
+                                <span class="impact-amount">₹500</span>
+                                <span class="impact-text">Provides meals for 10 children for a week</span>
+                            </li>
+                            <li>
+                                <span class="impact-amount">₹1,000</span>
+                                <span class="impact-text">Supports one athlete's training for a month</span>
+                            </li>
+                            <li>
+                                <span class="impact-amount">₹2,500</span>
+                                <span class="impact-text">Funds a health checkup for 25 people</span>
+                            </li>
+                            <li>
+                                <span class="impact-amount">₹5,000</span>
+                                <span class="impact-text">Provides sports equipment for a school</span>
+                            </li>
+                            <li>
+                                <span class="impact-amount">₹10,000</span>
+                                <span class="impact-text">Organizes a community health camp</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Bank Details -->
+                    <div class="bank-details-card reveal">
+                        <h3><i class="fas fa-university"></i> Bank Transfer</h3>
+                        <p>For direct bank transfers, use the following details:</p>
+                        <div class="bank-info">
+                            <p><strong>Account Name:</strong><br>Olympian Anuj International Trust</p>
+                            <p><strong>Bank:</strong><br>State Bank of India</p>
+                            <p><strong>Account No:</strong><br>Contact us for details</p>
+                            <p><strong>IFSC Code:</strong><br>Contact us for details</p>
+                        </div>
+                        <p class="bank-note">Please share transaction details via email for receipt.</p>
+                    </div>
+
+                    <!-- Tax Benefits -->
+                    <div class="tax-benefits-card reveal">
+                        <h3><i class="fas fa-file-invoice"></i> Tax Benefits</h3>
+                        <p>All donations to Olympian Anuj International Trust are eligible for tax exemption under <strong>Section 80G</strong> of the Income Tax Act.</p>
+                        <p>A tax-exempt receipt will be sent to your email within 24 hours of your donation.</p>
+                    </div>
+
+                    <!-- Contact for Help -->
+                    <div class="donate-help-card reveal">
+                        <h3><i class="fas fa-question-circle"></i> Need Help?</h3>
+                        <p>For any donation-related queries:</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+919811260140">+91 9811260140</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:olympiananujinternationaltrust@gmail.com">Email Us</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== OTHER WAYS TO HELP ==================== -->
+    <section class="other-ways section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tagline">Get Involved</span>
+                <h2 class="section-title">Other Ways to Support</h2>
+            </div>
+
+            <div class="ways-grid">
+                <div class="way-card reveal">
+                    <div class="way-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Volunteer Your Time</h3>
+                    <p>Join our team of dedicated volunteers and make a direct impact in people's lives.</p>
+                    <a href="contact.html" class="btn btn-outline-sm">Get Started</a>
+                </div>
+
+                <div class="way-card reveal">
+                    <div class="way-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Corporate Partnership</h3>
+                    <p>Partner with us through CSR initiatives or sponsorship opportunities.</p>
+                    <a href="contact.html" class="btn btn-outline-sm">Learn More</a>
+                </div>
+
+                <div class="way-card reveal">
+                    <div class="way-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>In-Kind Donations</h3>
+                    <p>Donate sports equipment, medical supplies, or food items directly.</p>
+                    <a href="contact.html" class="btn btn-outline-sm">Contact Us</a>
+                </div>
+
+                <div class="way-card reveal">
+                    <div class="way-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Spread the Word</h3>
+                    <p>Share our mission with your network and help us reach more supporters.</p>
+                    <a href="#" class="btn btn-outline-sm">Share Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TRUST & TRANSPARENCY ==================== -->
+    <section class="trust-section section-padding bg-light">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-content reveal">
+                    <span class="section-tagline">Trust & Transparency</span>
+                    <h2 class="section-title">Your Trust Matters</h2>
+                    <p>We believe in complete transparency in how your donations are used. Our commitment:</p>
+                    <ul class="trust-list">
+                        <li><i class="fas fa-check-circle"></i> 100% of designated donations go to the specified cause</li>
+                        <li><i class="fas fa-check-circle"></i> Regular financial reports and audited statements</li>
+                        <li><i class="fas fa-check-circle"></i> Impact reports sent to all donors</li>
+                        <li><i class="fas fa-check-circle"></i> Site visits arranged for major donors</li>
+                        <li><i class="fas fa-check-circle"></i> Registered under the Indian Trusts Act</li>
+                    </ul>
+                </div>
+                <div class="trust-stats reveal">
+                    <div class="trust-stat">
+                        <div class="stat-circle">
+                            <span>85%</span>
+                        </div>
+                        <p>Goes directly to programs</p>
+                    </div>
+                    <div class="trust-stat">
+                        <div class="stat-circle">
+                            <span>10%</span>
+                        </div>
+                        <p>Operations & Administration</p>
+                    </div>
+                    <div class="trust-stat">
+                        <div class="stat-circle">
+                            <span>5%</span>
+                        </div>
+                        <p>Fundraising & Awareness</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Footer Column 1 - About -->
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <img src="assets/logo/OLYMPIAN_ANUJ_INTERNATIONAL_TRUST_-_Logo-without-background.png" alt="Logo">
+                            <span>Olympian Anuj<br>International Trust</span>
+                        </div>
+                        <p class="footer-about">Dedicated to transforming lives through sports excellence, accessible healthcare, and nutritious food for children since 2015. Together, we create lasting change.</p>
+                        <ul class="footer-social">
+                            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Footer Column 2 - Quick Links -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="causes.html">Our Causes</a></li>
+                            <li><a href="events.html">Events</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="donate.html">Donate Now</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Footer Column 3 - Our Causes -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Our Causes</h4>
+                        <ul class="footer-links">
+                            <li><a href="causes.html#sports"><i class="fas fa-running"></i> Sports Events</a></li>
+                            <li><a href="causes.html#healthcare"><i class="fas fa-heartbeat"></i> Healthcare</a></li>
+                            <li><a href="causes.html#food"><i class="fas fa-utensils"></i> Food for Children</a></li>
+                        </ul>
+                        <div class="footer-newsletter">
+                            <h5>Newsletter</h5>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Your Email">
+                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Footer Column 4 - Contact Info -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Contact Info</h4>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Vill. Badheri, Distt. Muzaffarnagar-251307 (U.P.)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+919811260140">+91 9811260140, 9760766666</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:olympiananujinternationaltrust@gmail.com">olympiananujinternationaltrust@gmail.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2026 Olympian Anuj International Trust. All Rights Reserved. | Regn. No: 260 | Estd. 2015</p>
+                    <ul class="footer-bottom-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // Amount Selection
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('customAmount').value = '';
+            });
+        });
+
+        // Custom Amount
+        document.getElementById('customAmount').addEventListener('input', function() {
+            if (this.value) {
+                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+            }
+        });
+
+        // Donation Form
+        document.getElementById('donationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get selected amount
+            let amount = document.getElementById('customAmount').value;
+            if (!amount) {
+                const activeBtn = document.querySelector('.amount-btn.active');
+                amount = activeBtn ? activeBtn.dataset.amount : '';
+            }
+            
+            if (!amount || amount < 100) {
+                alert('Please select or enter a donation amount (minimum ₹100).');
+                return;
+            }
+            
+            // Get selected cause
+            const cause = document.querySelector('input[name="cause"]:checked').value;
+            const donationType = document.querySelector('input[name="donationType"]:checked').value;
+            
+            // Show confirmation (in real implementation, integrate payment gateway)
+            alert(`Thank you for your ${donationType === 'monthly' ? 'monthly' : 'one-time'} donation of ₹${amount} towards ${cause === 'general' ? 'our programs' : cause}!\n\nYou will be redirected to the payment gateway.`);
+        });
+    </script>
+</body>
+</html>
