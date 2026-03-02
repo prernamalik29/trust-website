@@ -40,10 +40,9 @@
                 </div>
                 <div class="top-bar-right">
                     <ul class="social-links">
-                        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
                     </ul>
                     <a href="donate.html" class="top-donate-link active">
                         <i class="fas fa-heart"></i> Donate
@@ -400,10 +399,9 @@
                         </div>
                         <p class="footer-about">Dedicated to transforming lives through sports excellence, accessible healthcare, and nutritious food for children since 2015. Together, we create lasting change.</p>
                         <ul class="footer-social">
-                            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
                             <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                         </ul>
                     </div>
@@ -485,8 +483,9 @@
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script type="module" src="js/forms.js"></script>
     <script>
-        // Amount Selection
+        // Amount Selection (UI only — Firestore write handled by forms.js)
         document.querySelectorAll('.amount-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
@@ -495,35 +494,11 @@
             });
         });
 
-        // Custom Amount
+        // Clear preset selection when custom amount is typed
         document.getElementById('customAmount').addEventListener('input', function() {
             if (this.value) {
                 document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
             }
-        });
-
-        // Donation Form
-        document.getElementById('donationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get selected amount
-            let amount = document.getElementById('customAmount').value;
-            if (!amount) {
-                const activeBtn = document.querySelector('.amount-btn.active');
-                amount = activeBtn ? activeBtn.dataset.amount : '';
-            }
-            
-            if (!amount || amount < 100) {
-                alert('Please select or enter a donation amount (minimum ₹100).');
-                return;
-            }
-            
-            // Get selected cause
-            const cause = document.querySelector('input[name="cause"]:checked').value;
-            const donationType = document.querySelector('input[name="donationType"]:checked').value;
-            
-            // Show confirmation (in real implementation, integrate payment gateway)
-            alert(`Thank you for your ${donationType === 'monthly' ? 'monthly' : 'one-time'} donation of ₹${amount} towards ${cause === 'general' ? 'our programs' : cause}!\n\nYou will be redirected to the payment gateway.`);
         });
     </script>
 </body>

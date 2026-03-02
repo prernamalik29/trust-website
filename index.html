@@ -40,10 +40,9 @@
                 </div>
                 <div class="top-bar-right">
                     <ul class="social-links">
-                        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
                     </ul>
                     <a href="#donate" class="top-donate-link">
                         <i class="fas fa-heart"></i> Donate
@@ -200,7 +199,7 @@
                 <p class="section-subtitle">Support our three core initiatives and help us create lasting change in communities.</p>
             </div>
 
-            <div class="causes-grid">
+            <div class="causes-grid" id="causes-container">
                 <!-- Cause Card 1 - Sports Events -->
                 <div class="cause-card">
                     <div class="cause-image">
@@ -279,28 +278,28 @@
                     <div class="stat-icon">
                         <i class="fas fa-donate"></i>
                     </div>
-                    <div class="stat-number" data-count="2500000">0</div>
+                    <div class="stat-number" data-count="2500000" data-stat-key="totalDonations">0</div>
                     <div class="stat-label">Total Donations (₹)</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
-                    <div class="stat-number" data-count="350">0</div>
+                    <div class="stat-number" data-count="350" data-stat-key="volunteers">0</div>
                     <div class="stat-label">Volunteers</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon">
                         <i class="fas fa-calendar-check"></i>
                     </div>
-                    <div class="stat-number" data-count="125">0</div>
+                    <div class="stat-number" data-count="125" data-stat-key="eventsOrganized">0</div>
                     <div class="stat-label">Events Organized</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon">
                         <i class="fas fa-child"></i>
                     </div>
-                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-number" data-count="5000" data-stat-key="childrenSupported">0</div>
                     <div class="stat-label">Children Supported</div>
                 </div>
             </div>
@@ -316,66 +315,9 @@
                 <p class="section-subtitle">Participate in our upcoming events and be part of the change.</p>
             </div>
 
-            <div class="events-grid">
-                <!-- Event Card 1 -->
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="assets/sport-section/new-event-08-03-2026.jpeg" alt="Sports Championship">
-                        <div class="event-date">
-                            <span class="day">08</span>
-                            <span class="month">Mar</span>
-                        </div>
-                    </div>
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <span><i class="fas fa-clock"></i> 9:00 AM - 6:00 PM</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Delhi Stadium</span>
-                        </div>
-                        <h3 class="event-title">Annual Sports Championship 2026</h3>
-                        <p class="event-text">Join us for our biggest sports event of the year featuring athletics, football, and more.</p>
-                        <a href="#" class="btn btn-outline-sm">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Event Card 2 -->
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80" alt="Healthcare Camp">
-                        <div class="event-date">
-                            <span class="day">15</span>
-                            <span class="month">Mar</span>
-                        </div>
-                    </div>
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <span><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Community Center</span>
-                        </div>
-                        <h3 class="event-title">Free Health Checkup Camp</h3>
-                        <p class="event-text">Free medical examinations, consultations, and medicines for community members.</p>
-                        <a href="#" class="btn btn-outline-sm">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Event Card 3 -->
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=500&q=80" alt="Food Distribution">
-                        <div class="event-date">
-                            <span class="day">22</span>
-                            <span class="month">Mar</span>
-                        </div>
-                    </div>
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <span><i class="fas fa-clock"></i> 12:00 PM - 3:00 PM</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Multiple Locations</span>
-                        </div>
-                        <h3 class="event-title">Community Food Distribution</h3>
-                        <p class="event-text">Monthly food distribution drive to provide meals to underprivileged families.</p>
-                        <a href="#" class="btn btn-outline-sm">Read More</a>
-                    </div>
-                </div>
+            <div class="events-grid" id="events-container">
+                <!-- Events will be loaded dynamically from /data/events/ -->
+                <p class="loading-text" style="text-align: center; grid-column: 1 / -1;">Loading events...</p>
             </div>
         </div>
     </section>
@@ -572,10 +514,9 @@
                         </div>
                         <p class="footer-about">Dedicated to transforming lives through sports excellence, accessible healthcare, and nutritious food for children. Together, we create lasting change.</p>
                         <ul class="footer-social">
-                            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
                             <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                         </ul>
                     </div>
@@ -657,5 +598,10 @@
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    
+    <!-- Firebase Dynamic Content Loader -->
+    <script type="module" src="js/dynamic-content.js"></script>
+    <!-- Form Handlers (newsletter footer form) -->
+    <script type="module" src="js/forms.js"></script>
 </body>
 </html>

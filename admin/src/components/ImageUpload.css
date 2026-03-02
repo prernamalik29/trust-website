@@ -1,0 +1,122 @@
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.image-preview {
+  width: 100%;
+  max-width: 200px;
+  border-radius: var(--admin-radius);
+  overflow: hidden;
+  border: 2px solid var(--admin-border);
+}
+
+.image-preview img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--admin-primary);
+  color: #fff;
+  border-radius: var(--admin-radius);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s;
+  width: fit-content;
+}
+
+.upload-label:hover {
+  background: var(--admin-primary-light);
+}
+
+.upload-label input {
+  display: none;
+}
+
+.upload-progress {
+  width: 100%;
+  height: 6px;
+  background: var(--admin-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.upload-progress-bar {
+  height: 100%;
+  background: var(--admin-secondary);
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.upload-error {
+  color: var(--admin-danger);
+  font-size: 0.8rem;
+}
+
+.upload-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.toggle-btn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--admin-border);
+  background: #fff;
+  color: var(--admin-text-light);
+  border-radius: var(--admin-radius);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  border-color: var(--admin-primary);
+  color: var(--admin-primary);
+}
+
+.toggle-btn.active {
+  background: var(--admin-primary);
+  border-color: var(--admin-primary);
+  color: #fff;
+}
+
+.url-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.url-input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  font-size: 0.85rem;
+}
+
+.url-input:focus {
+  outline: none;
+  border-color: var(--admin-primary);
+}
+
+.url-submit-btn {
+  padding: 0.6rem 1rem;
+  background: var(--admin-secondary);
+  color: #fff;
+  border: none;
+  border-radius: var(--admin-radius);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.url-submit-btn:hover {
+  background: #218838;
+}

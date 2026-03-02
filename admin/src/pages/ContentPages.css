@@ -1,0 +1,169 @@
+.content-page {
+  max-width: 1100px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--admin-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  font-size: 0.9rem;
+  font-family: var(--admin-font);
+  color: var(--admin-text);
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--admin-primary);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--admin-border);
+  margin-top: 0.5rem;
+}
+
+.progress-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mini-progress {
+  width: 60px;
+  height: 6px;
+  background: var(--admin-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background: var(--admin-secondary);
+  border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   Shared page styles — Contacts, Volunteers, Donations, Newsletter, EventRegistrations
+   ========================================= */
+.contacts-page,
+.volunteers-page,
+.donations-page,
+.newsletter-page,
+.event-regs-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page-stats-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.page-stat-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--admin-white);
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 13px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+
+.page-stat-chip i {
+  font-size: 18px;
+  color: var(--admin-primary);
+}
+
+.page-stat-chip .chip-val {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--admin-text);
+  line-height: 1;
+}
+
+.page-stat-chip .chip-label {
+  color: var(--admin-text-light);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Donation summary bar */
+.donation-summary {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: var(--admin-white);
+  border-radius: var(--admin-radius);
+  box-shadow: var(--admin-shadow);
+  border-left: 4px solid #27ae60;
+}
+
+.donation-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.donation-summary-item .ds-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--admin-text);
+  line-height: 1;
+}
+
+.donation-summary-item .ds-label {
+  font-size: 11px;
+  color: var(--admin-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

@@ -40,10 +40,9 @@
                 </div>
                 <div class="top-bar-right">
                     <ul class="social-links">
-                        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
                     </ul>
                     <a href="donate.html" class="top-donate-link">
                         <i class="fas fa-heart"></i> Donate
@@ -123,7 +122,7 @@
                 <p class="section-subtitle">Join us at our upcoming events and be part of the positive change we're creating.</p>
             </div>
 
-            <div class="events-list">
+            <div class="events-list" id="events-page-container">
                 <!-- Event 1 - Featured -->
                 <div class="event-featured reveal">
                     <div class="event-featured-image">
@@ -366,10 +365,9 @@
                         </div>
                         <p class="footer-about">Dedicated to transforming lives through sports excellence, accessible healthcare, and nutritious food for children. Together, we create lasting change.</p>
                         <ul class="footer-social">
-                            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
                             <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                         </ul>
                     </div>
@@ -449,7 +447,215 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- ==================== EVENT REGISTRATION MODAL ==================== -->
+    <div id="eventRegModal" class="er-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="erModalTitle" style="display:none;">
+        <div class="er-modal">
+            <div class="er-modal-header">
+                <div>
+                    <h2 id="erModalTitle" class="er-modal-title">Event Registration</h2>
+                    <p id="erModalEventName" class="er-modal-subtitle"></p>
+                </div>
+                <button class="er-close-btn" id="erCloseBtn" aria-label="Close registration form">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="er-modal-body">
+                <form id="eventRegForm" novalidate>
+                    <!-- Hidden event meta fields — populated by JS when a button is clicked -->
+                    <input type="hidden" name="eventName">
+                    <input type="hidden" name="eventCategory">
+                    <input type="hidden" name="eventDate">
+
+                    <div class="er-form-section">
+                        <h4 class="er-section-title"><i class="fas fa-user"></i> Personal Information</h4>
+                        <div class="er-form-row">
+                            <div class="er-form-group">
+                                <label for="erParticipantName">Full Name <span class="er-req">*</span></label>
+                                <input type="text" id="erParticipantName" name="participantName" required placeholder="Your full name">
+                            </div>
+                            <div class="er-form-group">
+                                <label for="erAge">Age <span class="er-req">*</span></label>
+                                <input type="number" id="erAge" name="age" required min="5" max="100" placeholder="Your age">
+                            </div>
+                        </div>
+                        <div class="er-form-row">
+                            <div class="er-form-group">
+                                <label for="erEmail">Email Address <span class="er-req">*</span></label>
+                                <input type="email" id="erEmail" name="email" required placeholder="your@email.com">
+                            </div>
+                            <div class="er-form-group">
+                                <label for="erPhone">Phone Number <span class="er-req">*</span></label>
+                                <input type="tel" id="erPhone" name="phone" required placeholder="+91 XXXXXXXXXX">
+                            </div>
+                        </div>
+                        <div class="er-form-row">
+                            <div class="er-form-group">
+                                <label for="erGender">Gender</label>
+                                <select id="erGender" name="gender">
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                            </div>
+                            <div class="er-form-group">
+                                <label for="erTshirtSize">T-Shirt Size</label>
+                                <select id="erTshirtSize" name="tshirtSize">
+                                    <option value="">Select size</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S (Small)</option>
+                                    <option value="M">M (Medium)</option>
+                                    <option value="L">L (Large)</option>
+                                    <option value="XL">XL (Extra Large)</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="er-form-group er-full">
+                            <label for="erAddress">Address</label>
+                            <input type="text" id="erAddress" name="address" placeholder="City, State">
+                        </div>
+                    </div>
+
+                    <div class="er-form-section">
+                        <h4 class="er-section-title"><i class="fas fa-shield-alt"></i> Emergency Contact</h4>
+                        <div class="er-form-row">
+                            <div class="er-form-group">
+                                <label for="erEmergencyName">Emergency Contact Name</label>
+                                <input type="text" id="erEmergencyName" name="emergencyContact" placeholder="Contact person name">
+                            </div>
+                            <div class="er-form-group">
+                                <label for="erEmergencyPhone">Emergency Contact Phone</label>
+                                <input type="tel" id="erEmergencyPhone" name="emergencyPhone" placeholder="+91 XXXXXXXXXX">
+                            </div>
+                        </div>
+                        <div class="er-form-group er-full">
+                            <label for="erMedical">Medical Conditions / Special Requirements</label>
+                            <textarea id="erMedical" name="medicalConditions" rows="3" placeholder="Any medical conditions, allergies or special needs we should know about..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="er-form-disclaimer">
+                        <i class="fas fa-info-circle"></i>
+                        By registering, you agree to the event's participation guidelines and that all information provided is accurate. The trust is not responsible for any injuries during the event.
+                    </div>
+
+                    <button type="submit" class="btn btn-primary er-submit-btn">
+                        <span>Complete Registration</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    
+    <!-- Firebase Dynamic Content Loader -->
+    <script type="module" src="js/dynamic-content.js"></script>
+
+    <!-- Forms handler (Firestore writes) -->
+    <script type="module" src="js/forms.js"></script>
+
+    <!-- Event Registration Modal controller -->
+    <script>
+    (function() {
+        const modal    = document.getElementById('eventRegModal');
+        const closeBtn = document.getElementById('erCloseBtn');
+        const form     = document.getElementById('eventRegForm');
+
+        function openModal(eventName, eventCategory, eventDate) {
+            // Populate hidden fields
+            form.elements['eventName'].value     = eventName     || '';
+            form.elements['eventCategory'].value = eventCategory || '';
+            form.elements['eventDate'].value     = eventDate     || '';
+
+            // Update subtitle
+            document.getElementById('erModalEventName').textContent = eventName || '';
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            // Focus first field
+            setTimeout(() => {
+                const first = form.querySelector('input:not([type="hidden"])');
+                if (first) first.focus();
+            }, 100);
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            form.reset();
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+
+        // Close on overlay click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display !== 'none') closeModal();
+        });
+
+        // Wire ALL registration buttons on the page
+        document.querySelectorAll('a[href="#"]').forEach(function(btn) {
+            const text = (btn.textContent || '').trim().toLowerCase();
+            if (text === 'register now' || text === 'register' || text === 'join') {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Walk up DOM to find event name, category, date
+                    const card = btn.closest('.event-featured-content, .event-content, .event-card, [class*="event"]');
+                    let eventName = '', eventCategory = '', eventDate = '';
+
+                    if (card) {
+                        const h2    = card.querySelector('h2, h3');
+                        const cat   = card.querySelector('.event-category');
+                        const dateEl = card.closest('.event-featured')?.querySelector('.event-date-large') ||
+                                       card.closest('.event-card')?.querySelector('.event-date');
+
+                        eventName     = h2     ? h2.textContent.trim()  : '';
+                        eventCategory = cat    ? cat.textContent.trim() : '';
+                        if (dateEl) {
+                            const day   = dateEl.querySelector('.day')?.textContent.trim()   || '';
+                            const month = dateEl.querySelector('.month')?.textContent.trim() || '';
+                            const year  = dateEl.querySelector('.year')?.textContent.trim()  || '';
+                            eventDate   = `${day} ${month} ${year}`.trim();
+                        }
+                    }
+
+                    openModal(eventName, eventCategory, eventDate);
+                });
+            }
+        });
+
+        // Also wire the small "Register" buttons in event cards that may already have a class
+        document.querySelectorAll('.btn-outline-sm').forEach(function(btn) {
+            const text = (btn.textContent || '').trim().toLowerCase();
+            if (text === 'register' || text === 'join') {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const card     = btn.closest('.event-card');
+                    const h3       = card?.querySelector('.event-title');
+                    const dateEl   = card?.querySelector('.event-date');
+                    const day      = dateEl?.querySelector('.day')?.textContent.trim()   || '';
+                    const month    = dateEl?.querySelector('.month')?.textContent.trim() || '';
+                    openModal(
+                        h3 ? h3.textContent.trim() : '',
+                        '',
+                        `${day} ${month}`.trim()
+                    );
+                });
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
