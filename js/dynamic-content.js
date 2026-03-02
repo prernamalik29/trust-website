@@ -31,7 +31,7 @@ async function renderCauses() {
       return;
     }
 
-    // Append dynamic causes to existing ones
+    // Replace container contents with dynamic causes from Firestore
     const causesHtml = causes.map(cause => {
       const progress = calculateProgress(cause.raisedAmount, cause.goalAmount);
       return `
@@ -57,7 +57,7 @@ async function renderCauses() {
         </div>
       `;
     }).join('');
-    container.insertAdjacentHTML('beforeend', causesHtml);
+    container.innerHTML = causesHtml;
   } catch (error) {
     console.error('Error rendering causes:', error);
     container.innerHTML = '<p class="error">Failed to load causes. Please try again later.</p>';

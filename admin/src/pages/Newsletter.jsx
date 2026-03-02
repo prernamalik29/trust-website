@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import DataTable from '../components/DataTable';
 import ConfirmDialog from '../components/ConfirmDialog';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { getNewsletterSubscribers, deleteNewsletterSubscriber } from '../services/db';
+import { getNewsletterSubscribers, deleteNewsletterSubscriber, toggleNewsletterActive } from '../services/db';
 import { exportToPDF, exportToWord } from '../services/exportService';
 import './ContentPages.css';
 
@@ -25,6 +25,21 @@ export default function Newsletter() {
   const [error, setError] = useState('');
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [togglingId, setTogglingId] = useState(null);
+
+  async function handleToggle(subscriber) {
+    setTogglingId(subscriber.id);
+    try {
+      const newActive = subscriber.active === false;
+      await toggleNewsletterActive(subscriber.id, newActive);
+      setSubscribers((prev) =>
+        prev.map((s) => s.id === subscriber.id ? { ...s, active: newActive } : s)
+      );
+    } catch {
+      alert('Failed to update subscriber status');
+    }
+    setTogglingId(null);
+  }
 
   useEffect(() => { loadData(); }, []);
 
@@ -53,15 +68,32 @@ export default function Newsletter() {
   }
 
   const activeCount = subscribers.filter((s) => s.active !== false).length;
+  const inactiveCount = subscribers.length - activeCount;
 
   const columns = [
     { key: 'email', label: 'Email Address' },
     {
       key: 'active', label: 'Status',
       render: (r) => (
-        <span className={`status-badge ${r.active !== false ? 'status-active' : 'status-rejected'}`}>
-          {r.active !== false ? 'Active' : 'Unsubscribed'}
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span className={`status-badge ${r.active !== false ? 'status-active' : 'status-rejected'}`}>
+            {r.active !== false ? 'Active' : 'Unsubscribed'}
+          </span>
+          <button
+            onClick={() => handleToggle(r)}
+            disabled={togglingId === r.id}
+            title={r.active !== false ? 'Mark as unsubscribed' : 'Re-activate subscriber'}
+            style={{
+              border: 'none', cursor: 'pointer', borderRadius: 4, padding: '2px 8px',
+              fontSize: 11, fontWeight: 600,
+              background: r.active !== false ? '#ffeeba' : '#d4edda',
+              color: r.active !== false ? '#856404' : '#155724',
+              opacity: togglingId === r.id ? 0.5 : 1,
+            }}
+          >
+            {togglingId === r.id ? '\u2026' : (r.active !== false ? 'Unsubscribe' : 'Re-activate')}
+          </button>
+        </div>
       ),
     },
     { key: 'subscribedAt', label: 'Subscribed On', render: (r) => fmt(r.subscribedAt) },
@@ -96,6 +128,13 @@ export default function Newsletter() {
             <div>
               <div className="chip-val">{activeCount}</div>
               <div className="chip-label">Active</div>
+            </div>
+          </div>
+          <div className="page-stat-chip">
+            <i className="fas fa-ban" style={{ color: '#dc3545' }}></i>
+            <div>
+              <div className="chip-val">{inactiveCount}</div>
+              <div className="chip-label">Unsubscribed</div>
             </div>
           </div>
         </div>

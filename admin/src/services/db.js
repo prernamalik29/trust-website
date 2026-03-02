@@ -229,6 +229,10 @@ export async function deleteNewsletterSubscriber(id) {
   return deleteDoc(doc(db, 'newsletter', id));
 }
 
+export async function toggleNewsletterActive(id, active) {
+  return updateDoc(doc(db, 'newsletter', id), { active, updatedAt: serverTimestamp() });
+}
+
 export async function getActiveSubscribersCount() {
   try {
     const q = query(newsletterRef, where('active', '==', true));

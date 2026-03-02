@@ -11,6 +11,9 @@ import {
   getFirestore,
   collection,
   addDoc,
+  getDocs,
+  query,
+  where,
   serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
 
@@ -123,13 +126,16 @@ async function handleContactForm(e) {
       });
     }
 
-    // If newsletter opted-in, add to newsletter collection
+    // If newsletter opted-in, add to newsletter collection (dedup by email)
     if (newsletter) {
-      await addDoc(collection(db, 'newsletter'), {
-        email,
-        active: true,
-        subscribedAt: serverTimestamp(),
-      });
+      const already = await getDocs(query(collection(db, 'newsletter'), where('email', '==', email.toLowerCase())));
+      if (already.empty) {
+        await addDoc(collection(db, 'newsletter'), {
+          email: email.toLowerCase(),
+          active: true,
+          subscribedAt: serverTimestamp(),
+        });
+      }
     }
 
     form.reset();
@@ -212,7 +218,7 @@ async function handleNewsletterForm(e) {
   e.preventDefault();
   const form  = e.target;
   const input = form.querySelector('input[type="email"]');
-  const email = input?.value.trim();
+  const email = input?.value.trim().toLowerCase();
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     showToast('Please enter a valid email address.', 'error');
@@ -220,6 +226,13 @@ async function handleNewsletterForm(e) {
   }
 
   try {
+    // Dedup: skip silently if email already in the collection
+    const existing = await getDocs(query(collection(db, 'newsletter'), where('email', '==', email)));
+    if (!existing.empty) {
+      input.value = '';
+      showToast('✅ You\'re already subscribed to our newsletter!');
+      return;
+    }
     await addDoc(collection(db, 'newsletter'), {
       email,
       active: true,
@@ -245,7 +258,7 @@ async function handleEventRegistrationForm(e) {
   const participantName    = form.participantName.value.trim();
   const email              = form.email.value.trim();
   const phone              = form.phone.value.trim();
-  const age                = form.age?.value.trim() || '';
+  const age                = form.age?.value ? Number(form.age.value) : null;
   const gender             = form.gender?.value || '';
   const address            = form.address?.value.trim() || '';
   const eventName          = form.eventName?.value || form.dataset.eventName || '';

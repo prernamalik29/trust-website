@@ -123,34 +123,34 @@ const STATS_DATA = {
   childrenSupported: 5000,
 };
 
-// Sample causes (remove or extend as needed)
+// Sample causes — field names MUST match what admin/public expects: imageUrl, raisedAmount, goalAmount
 const CAUSES_DATA = [
   {
-    title:       'Sports Development',
-    description: 'Providing sports training, equipment, and coaching to underprivileged youth to help them excel in athletics and build discipline.',
-    image:       '/assets/sport-section/new-event-08-03-2026.jpeg',
-    raised:      850000,
-    goal:        1500000,
-    category:    'sports',
-    status:      'active',
+    title:        'Sports Development',
+    description:  'Providing sports training, equipment, and coaching to underprivileged youth to help them excel in athletics and build discipline.',
+    imageUrl:     '/assets/sport-section/new-event-08-03-2026.jpeg',
+    raisedAmount: 850000,
+    goalAmount:   1500000,
+    category:     'sports',
+    status:       'active',
   },
   {
-    title:       'Health & Medical Aid',
-    description: 'Organising free health camps, diagnostic tests, and distributing medicines to communities without access to healthcare.',
-    image:       'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80',
-    raised:      620000,
-    goal:        1200000,
-    category:    'health',
-    status:      'active',
+    title:        'Health & Medical Aid',
+    description:  'Organising free health camps, diagnostic tests, and distributing medicines to communities without access to healthcare.',
+    imageUrl:     'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80',
+    raisedAmount: 620000,
+    goalAmount:   1200000,
+    category:     'health',
+    status:       'active',
   },
   {
-    title:       'Child Education',
-    description: 'Funding school fees, books, uniforms, and digital learning tools for children from low-income families.',
-    image:       'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=500&q=80',
-    raised:      430000,
-    goal:        900000,
-    category:    'education',
-    status:      'active',
+    title:        'Child Education',
+    description:  'Funding school fees, books, uniforms, and digital learning tools for children from low-income families.',
+    imageUrl:     'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=500&q=80',
+    raisedAmount: 430000,
+    goalAmount:   900000,
+    category:     'education',
+    status:       'active',
   },
 ];
 
