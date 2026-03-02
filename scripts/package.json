@@ -1,0 +1,13 @@
+{
+  "name": "oait-scripts",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "seed": "node seed.js",
+    "seed:dry": "node seed.js --dry-run"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}

@@ -1,6 +1,7 @@
 # ===== Dependencies =====
 node_modules/
 admin/node_modules/
+scripts/node_modules/
 
 # ===== Build Outputs =====
 dist/
@@ -12,6 +13,10 @@ admin/dist/
 .env.production.local
 admin/.env.local
 admin/.env.production.local
+
+# ===== Firebase Service Account (NEVER commit this) =====
+scripts/serviceAccountKey.json
+*serviceAccount*.json
 
 # ===== Claude AI Temp Files =====
 tmpclaude-*/
