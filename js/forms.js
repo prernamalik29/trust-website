@@ -303,6 +303,48 @@ async function handleEventRegistrationForm(e) {
 }
 
 // ─────────────────────────────────────────────
+// 5. Volunteer Form  (#volunteerForm on volunteer.html)
+// ─────────────────────────────────────────────
+
+async function handleVolunteerForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('[type="submit"]');
+
+  const name          = form.volunteerName.value.trim();
+  const email         = form.email.value.trim();
+  const phone         = form.phone?.value.trim() || '';
+  const interestArea  = form.interestArea.value;
+  const availability  = form.availability.value;
+  const experience    = form.experience?.value ? Number(form.experience.value) : null;
+  const message       = form.message?.value.trim() || '';
+
+  if (!name || !email || !interestArea || !availability) {
+    showToast('Please fill in all required fields.', 'error');
+    return;
+  }
+
+  showFormSubmitting(btn, 'Submit Application');
+  try {
+    await addDoc(collection(db, 'volunteers'), {
+      name, email, phone,
+      interestArea, availability,
+      experience,
+      message,
+      status: 'new',
+      createdAt: serverTimestamp(),
+    });
+    form.reset();
+    showToast('✅ Thank you! Your volunteer application has been received. We\'ll contact you shortly.');
+  } catch (err) {
+    console.error('Volunteer form error:', err);
+    showToast('Submission failed. Please try again.', 'error');
+  } finally {
+    showFormSubmitting(btn, 'Submit Application', false);
+  }
+}
+
+// ─────────────────────────────────────────────
 // Boot — attach listeners on DOMContentLoaded
 // ─────────────────────────────────────────────
 
@@ -323,6 +365,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Event registration form
   const eventRegForm = document.getElementById('eventRegForm');
   if (eventRegForm) eventRegForm.addEventListener('submit', handleEventRegistrationForm);
+
+  // Volunteer form
+  const volunteerForm = document.getElementById('volunteerForm');
+  if (volunteerForm) volunteerForm.addEventListener('submit', handleVolunteerForm);
 });
 
 // Export for dynamic use if needed

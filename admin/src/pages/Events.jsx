@@ -6,7 +6,7 @@ import ImageUpload from '../components/ImageUpload';
 import { getEvents, addEvent, updateEvent, deleteEvent } from '../services/db';
 import './ContentPages.css';
 
-const emptyForm = { title: '', imageUrl: '', day: '', month: '', year: '2026', time: '', location: '', category: '', description: '' };
+const emptyForm = { title: '', imageUrl: '', day: '', month: '', year: '2026', time: '', location: '', category: '', description: '', status: 'upcoming', featured: false };
 
 export default function Events() {
   const [items, setItems] = useState([]);
@@ -68,6 +68,8 @@ export default function Events() {
       location: item.location || '',
       category: item.category || '',
       description: item.description || '',
+      status: item.status || 'upcoming',
+      featured: item.featured ?? false,
     });
     setModalOpen(true);
   }
@@ -82,10 +84,14 @@ export default function Events() {
     setSaving(true);
     try {
       const data = { ...form };
+      // Derive a proper Timestamp-compatible Date for server-side date ordering
+      const MONTHS = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+      const mo = MONTHS[data.month] ?? 0;
+      data.date = new Date(Number(data.year || 2026), mo, Number(data.day || 1));
       if (editing) {
         await updateEvent(editing.id, data);
       } else {
-        await addEvent(data);
+        await addEvent({ ...data, status: data.status || 'upcoming', featured: data.featured ?? false });
       }
       setModalOpen(false);
       await loadData();

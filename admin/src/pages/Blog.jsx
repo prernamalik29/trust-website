@@ -6,7 +6,7 @@ import ImageUpload from '../components/ImageUpload';
 import { getBlogPosts, addBlogPost, updateBlogPost, deleteBlogPost } from '../services/db';
 import './ContentPages.css';
 
-const emptyForm = { title: '', imageUrl: '', date: '', author: 'Admin', commentsCount: 0, description: '' };
+const emptyForm = { title: '', imageUrl: '', date: '', author: 'Admin', commentsCount: 0, description: '', content: '' };
 
 export default function Blog() {
   const [items, setItems] = useState([]);
@@ -66,6 +66,7 @@ export default function Blog() {
       author: item.author || 'Admin',
       commentsCount: item.commentsCount ?? 0,
       description: item.description || '',
+      content: item.content || '',
     });
     setModalOpen(true);
   }
@@ -180,12 +181,21 @@ export default function Blog() {
             />
           </div>
           <div className="form-group">
-            <label>Description</label>
+            <label>Description (Snippet)</label>
             <textarea
-              rows="5"
+              rows="3"
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               required
+            ></textarea>
+          </div>
+          <div className="form-group">
+            <label>Full Article Content</label>
+            <textarea
+              rows="10"
+              value={form.content}
+              onChange={(e) => setForm({ ...form, content: e.target.value })}
+              placeholder="Write the full article body here..."
             ></textarea>
           </div>
           <div className="form-actions">

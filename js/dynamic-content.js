@@ -285,7 +285,7 @@ async function renderBlogPosts() {
             </div>
             <h2>${post.title}</h2>
             <p>${post.description || ''}</p>
-            <a href="#" class="btn btn-outline">Read More</a>
+            <a href="blog-post.html?id=${post.id}" class="btn btn-outline">Read More</a>
           </div>
         </article>
       `;

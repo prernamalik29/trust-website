@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Volunteer - Olympian Anuj International Trust</title>
+    <meta name="description" content="Join Olympian Anuj International Trust as a volunteer. Help us in sports programs, healthcare camps, and food distribution for children.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ── Volunteer-page specific tweaks ── */
+        .volunteer-highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 40px; }
+        .volunteer-highlight-card { background: #fff; border-radius: 12px; padding: 28px 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,.07); border-top: 4px solid var(--primary-color, #f9b000); }
+        .volunteer-highlight-card .icon { width: 60px; height: 60px; border-radius: 50%; background: rgba(249,176,0,.12); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 24px; color: var(--primary-color, #f9b000); }
+        .volunteer-highlight-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+        .volunteer-highlight-card p { font-size: 14px; color: #666; }
+        .volunteer-form-grid { display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: start; }
+        @media (max-width: 900px) { .volunteer-form-grid { grid-template-columns: 1fr; } }
+        .volunteer-form-wrapper .section-tagline { color: var(--primary-color, #f9b000); font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 8px; }
+        .volunteer-sidebar-card { background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,.07); margin-bottom: 24px; }
+        .volunteer-sidebar-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: #222; }
+        .volunteer-sidebar-card h3 i { color: var(--primary-color, #f9b000); }
+        .volunteer-sidebar-card ul { list-style: none; padding: 0; }
+        .volunteer-sidebar-card ul li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #555; display: flex; align-items: center; gap: 8px; }
+        .volunteer-sidebar-card ul li:last-child { border-bottom: none; }
+        .volunteer-sidebar-card ul li i { color: #27ae60; width: 16px; }
+        .volunteer-areas { list-style: none; padding: 0; }
+        .volunteer-areas li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+        .volunteer-areas li:last-child { border-bottom: none; }
+        .area-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        .area-sports { background: rgba(249,176,0,.15); color: #b8860b; }
+        .area-health { background: rgba(39,174,96,.15); color: #27ae60; }
+        .area-food { background: rgba(231,76,60,.15); color: #e74c3c; }
+        .area-general { background: rgba(33,150,243,.15); color: #2196f3; }
+    </style>
+</head>
+<body>
+    <!-- ==================== TOP BAR ==================== -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <ul class="top-info">
+                        <li><i class="fas fa-envelope"></i><a href="mailto:olympiananujinternationaltrust@gmail.com">olympiananujinternationaltrust@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i><a href="tel:+919811260140">+91 9811260140</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Muzaffarnagar, U.P., India</span></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="social-links">
+                        <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                    <a href="donate.html" class="top-donate-link"><i class="fas fa-heart"></i> Donate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN NAVIGATION ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo/OLYMPIAN_ANUJ_INTERNATIONAL_TRUST_-_Logo-without-background.png" alt="Olympian Anuj International Trust">
+                    <span class="logo-text">Olympian Anuj<br><small>International Trust</small></span>
+                </a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="causes.html" class="nav-link">Causes</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="volunteer.html" class="nav-link active">Volunteer</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <a href="donate.html" class="btn btn-donate">Donate Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== PAGE HEADER ==================== -->
+    <section class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-overlay"></div>
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Become a Volunteer</h1>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Volunteer</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHY VOLUNTEER SECTION ==================== -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 40px;">
+                <span class="section-tagline">Make a Difference</span>
+                <h2 class="section-title">Why Volunteer With Us?</h2>
+                <p class="section-text">Your time and skills can change lives. Join hundreds of volunteers who are already making an impact across sports, healthcare, and child nutrition.</p>
+            </div>
+            <div class="volunteer-highlights">
+                <div class="volunteer-highlight-card reveal">
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <h3>Sports Programs</h3>
+                    <p>Coach youth athletes, manage events, and help run our annual sports championships.</p>
+                </div>
+                <div class="volunteer-highlight-card reveal">
+                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Healthcare Camps</h3>
+                    <p>Support free health checkup camps, assist medical teams, and help with community outreach.</p>
+                </div>
+                <div class="volunteer-highlight-card reveal">
+                    <div class="icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Food Distribution</h3>
+                    <p>Help prepare and distribute nutritious meals to underprivileged children in the community.</p>
+                </div>
+                <div class="volunteer-highlight-card reveal">
+                    <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Education & Skills</h3>
+                    <p>Mentor children, teach digital skills, or support our education assistance programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== VOLUNTEER FORM SECTION ==================== -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="volunteer-form-grid">
+                <!-- Volunteer Application Form -->
+                <div class="volunteer-form-wrapper reveal">
+                    <div class="section-header">
+                        <span class="section-tagline">Join Our Team</span>
+                        <h2 class="section-title">Volunteer Application</h2>
+                        <p>Ready to make a difference? Fill out the form below and our team will reach out to schedule your orientation.</p>
+                    </div>
+
+                    <form class="contact-form" id="volunteerForm" style="margin-top: 30px;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="volunteerName">Full Name *</label>
+                                <input type="text" id="volunteerName" name="volunteerName" required placeholder="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX">
+                            </div>
+                            <div class="form-group">
+                                <label for="experience">Years of Relevant Experience</label>
+                                <input type="number" id="experience" name="experience" min="0" max="50" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="interestArea">Area of Interest *</label>
+                                <select id="interestArea" name="interestArea" required>
+                                    <option value="">Select an area</option>
+                                    <option value="Sports">Sports &amp; Athletics</option>
+                                    <option value="Healthcare">Healthcare &amp; Medical</option>
+                                    <option value="Food">Food for Children</option>
+                                    <option value="Education">Education &amp; Mentoring</option>
+                                    <option value="Events">Event Management</option>
+                                    <option value="General">General / Any Area</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="availability">Availability *</label>
+                                <select id="availability" name="availability" required>
+                                    <option value="">Select availability</option>
+                                    <option value="Weekdays (Mon–Fri)">Weekdays (Mon–Fri)</option>
+                                    <option value="Weekends (Sat–Sun)">Weekends (Sat–Sun)</option>
+                                    <option value="Full Week">Full Week</option>
+                                    <option value="Part-Time (Flexible)">Part-Time (Flexible)</option>
+                                    <option value="Evenings Only">Evenings Only</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Why Do You Want to Volunteer? / Skills & Background</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about yourself, your motivation, and any relevant skills..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <span>Submit Application</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="volunteer-sidebar">
+                    <div class="volunteer-sidebar-card reveal">
+                        <h3><i class="fas fa-list-check"></i> Volunteer Areas</h3>
+                        <ul class="volunteer-areas">
+                            <li>
+                                <div class="area-icon area-sports"><i class="fas fa-running"></i></div>
+                                <div><strong>Sports</strong><br><small>Coaching, event support, logistics</small></div>
+                            </li>
+                            <li>
+                                <div class="area-icon area-health"><i class="fas fa-stethoscope"></i></div>
+                                <div><strong>Healthcare</strong><br><small>Camp support, patient coordination</small></div>
+                            </li>
+                            <li>
+                                <div class="area-icon area-food"><i class="fas fa-bowl-food"></i></div>
+                                <div><strong>Food for Children</strong><br><small>Meal prep, distribution, logistics</small></div>
+                            </li>
+                            <li>
+                                <div class="area-icon area-general"><i class="fas fa-hands-helping"></i></div>
+                                <div><strong>General Support</strong><br><small>Admin, outreach, communications</small></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="volunteer-sidebar-card reveal">
+                        <h3><i class="fas fa-star"></i> What You'll Get</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Volunteer certificate & recommendation letter</li>
+                            <li><i class="fas fa-check"></i> Training &amp; orientation sessions</li>
+                            <li><i class="fas fa-check"></i> Networking with like-minded people</li>
+                            <li><i class="fas fa-check"></i> Recognition at our annual events</li>
+                            <li><i class="fas fa-check"></i> The satisfaction of real community impact</li>
+                        </ul>
+                    </div>
+
+                    <div class="volunteer-sidebar-card reveal">
+                        <h3><i class="fas fa-phone-alt"></i> Quick Contact</h3>
+                        <p style="font-size:14px; color:#555; margin-bottom:12px;">Have questions before applying?</p>
+                        <div class="quick-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+919811260140">+91 9811260140</a>
+                        </div>
+                        <div class="quick-contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/919811260140">WhatsApp Us</a>
+                        </div>
+                        <div class="quick-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:olympiananujinternationaltrust@gmail.com">Email Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <img src="assets/logo/OLYMPIAN_ANUJ_INTERNATIONAL_TRUST_-_Logo-without-background.png" alt="Logo">
+                            <span>Olympian Anuj<br>International Trust</span>
+                        </div>
+                        <p class="footer-about">Dedicated to transforming lives through sports excellence, accessible healthcare, and nutritious food for children since 2015.</p>
+                        <ul class="footer-social">
+                            <li><a href="https://www.facebook.com/share/16tm5PFRn5/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.instagram.com/olympiananujinternationaltrust?igsh=MWh5cWV5YWg4Mzczdg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="causes.html">Our Causes</a></li>
+                            <li><a href="events.html">Events</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="volunteer.html">Become Volunteer</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="donate.html">Donate Now</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-title">Our Causes</h4>
+                        <ul class="footer-links">
+                            <li><a href="causes.html#sports"><i class="fas fa-running"></i> Sports Events</a></li>
+                            <li><a href="causes.html#healthcare"><i class="fas fa-heartbeat"></i> Healthcare</a></li>
+                            <li><a href="causes.html#food"><i class="fas fa-utensils"></i> Food for Children</a></li>
+                        </ul>
+                        <div class="footer-newsletter">
+                            <h5>Newsletter</h5>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Your Email">
+                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-title">Contact Info</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i><span>Vill. Badheri, Distt. Muzaffarnagar-251307 (U.P.)</span></li>
+                            <li><i class="fas fa-phone"></i><a href="tel:+919811260140">+91 9811260140, 9760766666</a></li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:olympiananujinternationaltrust@gmail.com">olympiananujinternationaltrust@gmail.com</a></li>
+                            <li><i class="fas fa-clock"></i><span>Mon - Sat: 9:00 AM - 6:00 PM</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2026 Olympian Anuj International Trust. All Rights Reserved. | Regn. No: 260 | Estd. 2015</p>
+                    <ul class="footer-bottom-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="js/script.js"></script>
+    <script type="module" src="js/forms.js"></script>
+</body>
+</html>

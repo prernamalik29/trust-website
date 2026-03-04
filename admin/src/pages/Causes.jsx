@@ -109,7 +109,7 @@ export default function Causes() {
       if (editing) {
         await updateCause(editing.id, data);
       } else {
-        await addCause(data);
+        await addCause({ ...data, status: 'active' });
       }
       setModalOpen(false);
       await loadData();
