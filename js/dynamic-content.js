@@ -321,26 +321,33 @@ async function updateStats() {
 
 // ============ INITIALIZATION ============
 
-// Auto-detect page and load appropriate content
+// Auto-detect page and load appropriate content.
+// IMPORTANT: Uses DOM element presence (not URL path) to decide what to render.
+// Netlify and most hosts serve pretty URLs without the .html extension
+// (e.g., /causes instead of /causes.html), so path.includes('causes.html')
+// would NEVER match in production. Element-based detection is fully robust.
 document.addEventListener('DOMContentLoaded', async function() {
-  const path = window.location.pathname;
+  const renderJobs = [];
 
-  // Load content based on current page
-  if (path.includes('index.html') || path === '/' || path.endsWith('/')) {
-    // Homepage - load events, testimonials, causes preview, stats
-    await Promise.all([
-      renderCauses(),
-      renderEventsHome(),
-      renderTestimonials(),
-      updateStats()
-    ]);
-  } else if (path.includes('events.html')) {
-    await renderEventsPage();
-  } else if (path.includes('blog.html')) {
-    await renderBlogPosts();
-  } else if (path.includes('causes.html')) {
-    await renderCauses();
-  }
+  if (document.getElementById('causes-container'))
+    renderJobs.push(renderCauses());
+
+  if (document.getElementById('events-page-container'))
+    renderJobs.push(renderEventsPage());
+
+  if (document.getElementById('events-container'))
+    renderJobs.push(renderEventsHome());
+
+  if (document.getElementById('blog-posts-container'))
+    renderJobs.push(renderBlogPosts());
+
+  if (document.getElementById('testimonialTrack'))
+    renderJobs.push(renderTestimonials());
+
+  if (document.querySelectorAll('.stat-number[data-stat-key]').length > 0)
+    renderJobs.push(updateStats());
+
+  await Promise.all(renderJobs);
 });
 
 // Export for manual use

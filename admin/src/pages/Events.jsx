@@ -17,6 +17,7 @@ export default function Events() {
   const [deleting, setDeleting] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const columns = [
     {
@@ -96,7 +97,10 @@ export default function Events() {
       setModalOpen(false);
       await loadData();
     } catch (err) {
-      alert('Failed to save event');
+      const msg = err?.code === 'permission-denied'
+        ? 'Permission denied — make sure you are logged in as admin.'
+        : `Failed to save event: ${err?.message || err?.code || 'unknown error'}`;
+      alert(msg);
       console.error(err);
     }
     setSaving(false);
@@ -154,6 +158,7 @@ export default function Events() {
               currentImageUrl={form.imageUrl}
               folder="events"
               onUploadComplete={(url) => setForm({ ...form, imageUrl: url })}
+              onUploadingChange={setImageUploading}
             />
           </div>
           <div className="form-row">
@@ -231,8 +236,8 @@ export default function Events() {
             <button type="button" className="btn btn-outline" onClick={() => setModalOpen(false)}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary" disabled={saving}>
-              {saving ? 'Saving...' : editing ? 'Update' : 'Add'}
+            <button type="submit" className="btn btn-primary" disabled={saving || imageUploading}>
+              {imageUploading ? 'Uploading image...' : saving ? 'Saving...' : editing ? 'Update' : 'Add'}
             </button>
           </div>
         </form>

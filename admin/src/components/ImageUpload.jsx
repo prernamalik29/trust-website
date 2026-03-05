@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { uploadImage } from '../services/storage';
 import './ImageUpload.css';
 
-export default function ImageUpload({ currentImageUrl, onUploadComplete, folder }) {
+export default function ImageUpload({ currentImageUrl, onUploadComplete, folder, onUploadingChange }) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [preview, setPreview] = useState(currentImageUrl || '');
   const [error, setError] = useState('');
   const [useUrl, setUseUrl] = useState(false);
   const [urlInput, setUrlInput] = useState(currentImageUrl || '');
+
+  function setUploadingState(val) {
+    setUploading(val);
+    if (onUploadingChange) onUploadingChange(val);
+  }
 
   async function handleFileChange(e) {
     const file = e.target.files[0];
@@ -25,7 +30,7 @@ export default function ImageUpload({ currentImageUrl, onUploadComplete, folder 
     }
 
     setError('');
-    setUploading(true);
+    setUploadingState(true);
     setProgress(0);
 
     try {
@@ -47,7 +52,7 @@ export default function ImageUpload({ currentImageUrl, onUploadComplete, folder 
         setError(`Upload failed: ${err?.message || 'unknown error'}. Try "Enter URL" instead.`);
       }
     }
-    setUploading(false);
+    setUploadingState(false);
   }
 
   function handleUrlSubmit() {

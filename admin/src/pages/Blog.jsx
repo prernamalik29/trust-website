@@ -17,6 +17,7 @@ export default function Blog() {
   const [deleting, setDeleting] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const columns = [
     {
@@ -92,7 +93,10 @@ export default function Blog() {
       setModalOpen(false);
       await loadData();
     } catch (err) {
-      alert('Failed to save blog post');
+      const msg = err?.code === 'permission-denied'
+        ? 'Permission denied — make sure you are logged in as admin.'
+        : `Failed to save blog post: ${err?.message || err?.code || 'unknown error'}`;
+      alert(msg);
       console.error(err);
     }
     setSaving(false);
@@ -150,6 +154,7 @@ export default function Blog() {
               currentImageUrl={form.imageUrl}
               folder="blog"
               onUploadComplete={(url) => setForm({ ...form, imageUrl: url })}
+              onUploadingChange={setImageUploading}
             />
           </div>
           <div className="form-row">
@@ -202,8 +207,8 @@ export default function Blog() {
             <button type="button" className="btn btn-outline" onClick={() => setModalOpen(false)}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary" disabled={saving}>
-              {saving ? 'Saving...' : editing ? 'Update' : 'Add'}
+            <button type="submit" className="btn btn-primary" disabled={saving || imageUploading}>
+              {imageUploading ? 'Uploading image...' : saving ? 'Saving...' : editing ? 'Update' : 'Add'}
             </button>
           </div>
         </form>
