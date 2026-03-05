@@ -605,56 +605,44 @@
             if (e.key === 'Escape' && modal.style.display !== 'none') closeModal();
         });
 
-        // Wire ALL registration buttons on the page
-        document.querySelectorAll('a[href="#"]').forEach(function(btn) {
+        // Use event delegation on the document so registration buttons work for BOTH
+        // hardcoded events and events dynamically loaded from Firestore (admin panel changes).
+        // Previously, direct .forEach binding meant that buttons inserted after page load
+        // (via Firebase) never had click handlers attached.
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('a, button');
+            if (!btn) return;
+
             const text = (btn.textContent || '').trim().toLowerCase();
-            if (text === 'register now' || text === 'register' || text === 'join') {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
+            const isRegisterBtn = text === 'register now' || text === 'register' || text === 'join';
+            if (!isRegisterBtn) return;
 
-                    // Walk up DOM to find event name, category, date
-                    const card = btn.closest('.event-featured-content, .event-content, .event-card, [class*="event"]');
-                    let eventName = '', eventCategory = '', eventDate = '';
+            // Only intercept buttons that link to '#' (registration intent)
+            if (btn.tagName === 'A' && btn.getAttribute('href') !== '#') return;
 
-                    if (card) {
-                        const h2    = card.querySelector('h2, h3');
-                        const cat   = card.querySelector('.event-category');
-                        const dateEl = card.closest('.event-featured')?.querySelector('.event-date-large') ||
-                                       card.closest('.event-card')?.querySelector('.event-date');
+            e.preventDefault();
 
-                        eventName     = h2     ? h2.textContent.trim()  : '';
-                        eventCategory = cat    ? cat.textContent.trim() : '';
-                        if (dateEl) {
-                            const day   = dateEl.querySelector('.day')?.textContent.trim()   || '';
-                            const month = dateEl.querySelector('.month')?.textContent.trim() || '';
-                            const year  = dateEl.querySelector('.year')?.textContent.trim()  || '';
-                            eventDate   = `${day} ${month} ${year}`.trim();
-                        }
-                    }
+            // Walk up DOM to find the event card and extract event metadata
+            const card = btn.closest('.event-featured-content, .event-content, .event-card, [class*="event"]');
+            let eventName = '', eventCategory = '', eventDate = '';
 
-                    openModal(eventName, eventCategory, eventDate);
-                });
+            if (card) {
+                const h2    = card.querySelector('h2, h3');
+                const cat   = card.querySelector('.event-category');
+                const dateEl = card.closest('.event-featured')?.querySelector('.event-date-large') ||
+                               card.closest('.event-card')?.querySelector('.event-date');
+
+                eventName     = h2  ? h2.textContent.trim()  : '';
+                eventCategory = cat ? cat.textContent.trim() : '';
+                if (dateEl) {
+                    const day   = dateEl.querySelector('.day')?.textContent.trim()   || '';
+                    const month = dateEl.querySelector('.month')?.textContent.trim() || '';
+                    const year  = dateEl.querySelector('.year')?.textContent.trim()  || '';
+                    eventDate   = `${day} ${month} ${year}`.trim();
+                }
             }
-        });
 
-        // Also wire the small "Register" buttons in event cards that may already have a class
-        document.querySelectorAll('.btn-outline-sm').forEach(function(btn) {
-            const text = (btn.textContent || '').trim().toLowerCase();
-            if (text === 'register' || text === 'join') {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const card     = btn.closest('.event-card');
-                    const h3       = card?.querySelector('.event-title');
-                    const dateEl   = card?.querySelector('.event-date');
-                    const day      = dateEl?.querySelector('.day')?.textContent.trim()   || '';
-                    const month    = dateEl?.querySelector('.month')?.textContent.trim() || '';
-                    openModal(
-                        h3 ? h3.textContent.trim() : '',
-                        '',
-                        `${day} ${month}`.trim()
-                    );
-                });
-            }
+            openModal(eventName, eventCategory, eventDate);
         });
     })();
     </script>

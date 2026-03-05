@@ -1,36 +1,44 @@
-const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+import { storage } from '../config/firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
+/**
+ * Upload an image file to Firebase Storage.
+ * Requires the user to be authenticated (admin panel enforces this via ProtectedRoute).
+ *
+ * @param {File}     file        - The image File object from the file input
+ * @param {string}   folder      - Storage folder path, e.g. 'causes', 'events', 'blog'
+ * @param {Function} onProgress  - Optional callback receiving 0-100 progress value
+ * @returns {Promise<string>}    - Resolves with the public download URL
+ */
 export function uploadImage(file, folder, onProgress) {
   return new Promise((resolve, reject) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', UPLOAD_PRESET);
-    formData.append('folder', folder || 'uploads');
+    // Build a unique path: folder/timestamp_filename
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const storagePath = `${folder || 'uploads'}/${Date.now()}_${safeName}`;
+    const storageRef = ref(storage, storagePath);
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', UPLOAD_URL);
-
-    xhr.upload.addEventListener('progress', (e) => {
-      if (e.lengthComputable && onProgress) {
-        const progress = (e.loaded / e.total) * 100;
-        onProgress(progress);
-      }
+    const uploadTask = uploadBytesResumable(storageRef, file, {
+      contentType: file.type,
     });
 
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        const response = JSON.parse(xhr.responseText);
-        resolve(response.secure_url);
-      } else {
-        reject(new Error(`Upload failed with status ${xhr.status}: ${xhr.responseText}`));
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const pct = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        if (onProgress) onProgress(Math.round(pct));
+      },
+      (error) => {
+        console.error('Firebase Storage upload error:', error.code, error.message);
+        reject(error);
+      },
+      async () => {
+        try {
+          const url = await getDownloadURL(uploadTask.snapshot.ref);
+          resolve(url);
+        } catch (err) {
+          reject(err);
+        }
       }
-    });
-
-    xhr.addEventListener('error', () => reject(new Error('Upload failed - network error')));
-    xhr.addEventListener('abort', () => reject(new Error('Upload cancelled')));
-
-    xhr.send(formData);
+    );
   });
 }

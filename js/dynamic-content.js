@@ -35,7 +35,7 @@ async function renderCauses() {
     const causesHtml = causes.map(cause => {
       const progress = calculateProgress(cause.raisedAmount, cause.goalAmount);
       return `
-        <div class="cause-card">
+        <div class="cause-card reveal active">
           <div class="cause-image">
             <img src="${cause.imageUrl || 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=500&q=80'}" alt="${cause.title}">
             <div class="cause-category">${cause.category || 'General'}</div>
@@ -58,6 +58,8 @@ async function renderCauses() {
       `;
     }).join('');
     container.innerHTML = causesHtml;
+    // Signal script.js to re-animate progress bars for the new Firestore causes
+    document.dispatchEvent(new CustomEvent('causesRendered'));
   } catch (error) {
     console.error('Error rendering causes:', error);
     container.innerHTML = '<p class="error">Failed to load causes. Please try again later.</p>';
@@ -81,7 +83,7 @@ async function renderEventsHome() {
     const displayEvents = events.slice(0, 3);
 
     container.innerHTML = displayEvents.map(event => `
-      <div class="event-card">
+      <div class="event-card reveal active">
         <div class="event-image">
           <img src="${event.imageUrl || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80'}" alt="${event.title}">
           <div class="event-date">
@@ -124,7 +126,7 @@ async function renderEventsPage() {
     const otherEvents = events.slice(1);
 
     let html = `
-      <div class="event-featured reveal">
+      <div class="event-featured reveal active">
         <div class="event-featured-image">
           <img src="${featuredEvent.imageUrl || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'}" alt="${featuredEvent.title}">
           <div class="event-date-large">
@@ -173,7 +175,7 @@ async function renderEventsPage() {
     if (otherEvents.length > 0) {
       html += '<div class="events-grid">';
       html += otherEvents.map(event => `
-        <div class="event-card reveal">
+        <div class="event-card reveal active">
           <div class="event-image">
             <img src="${event.imageUrl || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80'}" alt="${event.title}">
             <div class="event-date">
@@ -233,10 +235,15 @@ async function renderTestimonials() {
       </div>
     `).join('');
 
-    // Reinitialize slider dots after updating content
-    if (typeof initSliderDots === 'function') {
-      initSliderDots();
+    // Update slider navigation dots to match the new testimonial count
+    const dotsContainer = document.getElementById('sliderDots');
+    if (dotsContainer) {
+      dotsContainer.innerHTML = testimonials.map((_, i) =>
+        `<span class="dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>`
+      ).join('');
     }
+    // Signal script.js to reinitialize the slider state
+    document.dispatchEvent(new CustomEvent('testimonialsUpdated'));
   } catch (error) {
     console.error('Error rendering testimonials:', error);
   }
@@ -255,22 +262,13 @@ async function renderBlogPosts() {
       return;
     }
 
-    // Clear existing posts but keep the structure
-    const existingPosts = container.querySelectorAll('.blog-post-card');
-    existingPosts.forEach(post => post.remove());
-    
-    // Remove existing pagination
-    const pagination = container.querySelector('.pagination');
-    if (pagination) pagination.remove();
-
-    // Insert new posts at the beginning
     const postsHtml = posts.map(post => {
       const date = post.date ? new Date(post.date) : new Date();
       const day = date.getDate();
       const month = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
       
       return `
-        <article class="blog-post-card reveal">
+        <article class="blog-post-card reveal active">
           <div class="blog-post-image">
             <img src="${post.imageUrl || 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80'}" alt="${post.title}">
             <div class="blog-post-date">
@@ -291,7 +289,8 @@ async function renderBlogPosts() {
       `;
     }).join('');
     
-    container.insertAdjacentHTML('afterbegin', postsHtml);
+    // Replace all existing content (hardcoded posts + pagination) with Firestore posts
+    container.innerHTML = postsHtml;
   } catch (error) {
     console.error('Error rendering blog posts:', error);
   }
@@ -312,6 +311,9 @@ async function updateStats() {
         el.setAttribute('data-count', stats[key]);
       }
     });
+    // Signal script.js to reset the animation flag and re-run the counter
+    // with the Firestore values (overriding the hardcoded data-count defaults)
+    document.dispatchEvent(new CustomEvent('statsUpdated'));
   } catch (error) {
     console.error('Error updating stats:', error);
   }

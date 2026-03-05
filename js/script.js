@@ -134,89 +134,95 @@
     // =============================================
     function setupTestimonialSlider() {
         if (!testimonialTrack) return;
-        
-        const slides = testimonialTrack.querySelectorAll('.testimonial-card');
-        const totalSlides = slides.length;
-        const dots = sliderDots ? sliderDots.querySelectorAll('.dot') : [];
-        
-        // Auto slide every 5 seconds
-        let autoSlide = setInterval(nextSlide, 5000);
-        
+
+        let autoSlide;
+
+        // Always query live from DOM so dynamic Firestore updates are reflected
+        function getTotalSlides() {
+            return testimonialTrack.querySelectorAll('.testimonial-card').length;
+        }
+
+        function getLiveDots() {
+            return sliderDots ? Array.from(sliderDots.querySelectorAll('.dot')) : [];
+        }
+
+        function startAutoSlide() {
+            if (autoSlide) clearInterval(autoSlide);
+            autoSlide = setInterval(nextSlide, 5000);
+        }
+
         function goToSlide(index) {
-            if (index < 0) index = totalSlides - 1;
-            if (index >= totalSlides) index = 0;
-            
+            const total = getTotalSlides();
+            if (total === 0) return;
+            if (index < 0) index = total - 1;
+            if (index >= total) index = 0;
+
             currentSlide = index;
             testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            // Update dots
-            dots.forEach((dot, i) => {
+
+            // Update dots via live query — works even after DOM replacement
+            getLiveDots().forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentSlide);
             });
         }
-        
-        function nextSlide() {
-            goToSlide(currentSlide + 1);
-        }
-        
-        function prevSlide() {
-            goToSlide(currentSlide - 1);
-        }
-        
-        // Event listeners
+
+        function nextSlide() { goToSlide(currentSlide + 1); }
+        function prevSlide() { goToSlide(currentSlide - 1); }
+
+        function resetAutoSlide() { startAutoSlide(); }
+
+        // Event listeners attached once
         if (nextBtn) {
             nextBtn.addEventListener('click', function() {
                 nextSlide();
                 resetAutoSlide();
             });
         }
-        
+
         if (prevBtn) {
             prevBtn.addEventListener('click', function() {
                 prevSlide();
                 resetAutoSlide();
             });
         }
-        
-        // Dot navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', function() {
-                goToSlide(index);
-                resetAutoSlide();
+
+        // Use event delegation on the dots container so it works after DOM updates
+        if (sliderDots) {
+            sliderDots.addEventListener('click', function(e) {
+                const dot = e.target.closest('.dot');
+                if (dot) {
+                    goToSlide(parseInt(dot.getAttribute('data-index')));
+                    resetAutoSlide();
+                }
             });
-        });
-        
-        function resetAutoSlide() {
-            clearInterval(autoSlide);
-            autoSlide = setInterval(nextSlide, 5000);
         }
-        
+
         // Touch support for slider
         let touchStartX = 0;
         let touchEndX = 0;
-        
+
         testimonialTrack.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
-        
+
         testimonialTrack.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? nextSlide() : prevSlide();
                 resetAutoSlide();
             }
-        }
+        }, { passive: true });
+
+        startAutoSlide();
+
+        // Expose a reinit hook so dynamic-content.js can reset the slider
+        // after replacing testimonials with Firestore data
+        window._reinitTestimonialsSlider = function() {
+            currentSlide = 0;
+            goToSlide(0);
+            startAutoSlide();
+        };
     }
 
     // =============================================
@@ -527,6 +533,40 @@
         setupKeyboardNav();
         setupIntersectionObserver();
         hidePreloader();
+    });
+
+    // ─── Dynamic Firestore content hooks ─────────────────────────────────────
+    // When dynamic-content.js updates Firestore stats, reset the animation flag
+    // so the counter re-runs with the new values from the admin panel.
+    document.addEventListener('statsUpdated', function() {
+        isAnimatingStats = false;
+        const statsSection = document.querySelector('.statistics');
+        if (statsSection && isInViewport(statsSection)) {
+            animateCounters();
+        }
+    });
+
+    // When dynamic-content.js replaces testimonials HTML from Firestore,
+    // reinitialize the slider to reflect the updated slide count and dots.
+    document.addEventListener('testimonialsUpdated', function() {
+        if (typeof window._reinitTestimonialsSlider === 'function') {
+            window._reinitTestimonialsSlider();
+        }
+    });
+
+    // When dynamic-content.js renders causes from Firestore, animate the new
+    // progress bars (the initial static NodeList no longer covers them).
+    document.addEventListener('causesRendered', function() {
+        isAnimatingProgress = false;
+        document.querySelectorAll('.progress-fill').forEach(function(bar) {
+            const progress = bar.getAttribute('data-progress');
+            if (progress) bar.style.width = progress + '%';
+        });
+        isAnimatingProgress = true;
+        // Activate reveal animations on newly inserted cause cards
+        document.querySelectorAll('.causes .reveal').forEach(function(el) {
+            if (isInViewport(el, 100)) el.classList.add('active');
+        });
     });
 
     // Handle window resize
