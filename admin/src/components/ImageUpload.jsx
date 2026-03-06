@@ -60,11 +60,21 @@ export default function ImageUpload({ currentImageUrl, onUploadComplete, folder,
     }
   }
 
+  function handleRemove() {
+    setPreview('');
+    setUrlInput('');
+    setError('');
+    onUploadComplete('');
+  }
+
   return (
     <div className="image-upload">
       {preview && (
         <div className="image-preview">
           <img src={preview} alt="Preview" />
+          <button type="button" className="remove-image-btn" onClick={handleRemove} title="Remove image">
+            <i className="fas fa-times"></i>
+          </button>
         </div>
       )}
       
