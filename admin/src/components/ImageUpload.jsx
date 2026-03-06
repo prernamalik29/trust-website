@@ -40,16 +40,13 @@ export default function ImageUpload({ currentImageUrl, onUploadComplete, folder,
       onUploadComplete(url);
     } catch (err) {
       console.error('Upload error:', err);
-      // Surface meaningful Firebase Storage error codes
-      const code = err?.code || '';
-      if (code === 'storage/unauthorized') {
-        setError('Permission denied — please make sure you are logged in.');
-      } else if (code === 'storage/canceled') {
-        setError('Upload was cancelled.');
-      } else if (code === 'storage/unknown' || err?.message?.includes('network')) {
+      const msg = err?.message || 'Unknown error';
+      if (msg.toLowerCase().includes('network')) {
         setError('Network error — please check your connection and try again.');
+      } else if (msg.toLowerCase().includes('cancel')) {
+        setError('Upload was cancelled.');
       } else {
-        setError(`Upload failed: ${err?.message || 'unknown error'}. Try "Enter URL" instead.`);
+        setError(`Upload failed: ${msg}. Try "Enter URL" instead.`);
       }
     }
     setUploadingState(false);
