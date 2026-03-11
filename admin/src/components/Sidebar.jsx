@@ -8,6 +8,7 @@ const navSections = [
       { path: '/admin', icon: 'fas fa-tachometer-alt', label: 'Dashboard', end: true },
       { path: '/admin/causes', icon: 'fas fa-hand-holding-heart', label: 'Causes' },
       { path: '/admin/events', icon: 'fas fa-calendar-alt', label: 'Events' },
+      { path: '/admin/gallery', icon: 'fas fa-images', label: 'Event Gallery' },
       { path: '/admin/testimonials', icon: 'fas fa-quote-right', label: 'Testimonials' },
       { path: '/admin/blog', icon: 'fas fa-blog', label: 'Blog' },
     ],

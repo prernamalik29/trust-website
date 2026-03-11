@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import DataTable from '../components/DataTable';
 import Modal from '../components/Modal';
 import ConfirmDialog from '../components/ConfirmDialog';
@@ -249,6 +250,30 @@ export default function Events() {
         onConfirm={handleDelete}
         loading={saving}
       />
+
+      {/* ── View Gallery shortcut ── */}
+      <div style={{
+        marginTop: '2rem',
+        paddingTop: '1.5rem',
+        borderTop: '1px solid var(--admin-border)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '0.75rem',
+      }}>
+        <p style={{ fontSize: '0.85rem', color: 'var(--admin-text-light)', margin: 0 }}>
+          Events marked as <strong>completed</strong> appear in the public Event Gallery.
+        </p>
+        <Link
+          to="/admin/gallery"
+          className="btn btn-primary"
+          style={{ textDecoration: 'none' }}
+        >
+          <i className="fas fa-images" />
+          View Past Event Gallery
+        </Link>
+      </div>
     </div>
   );
 }

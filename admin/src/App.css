@@ -1,3 +1,7 @@
+/* Tailwind utility classes (preflight/base reset is disabled in tailwind.config.js
+   to avoid conflicting with the admin panel's own base styles). */
+@tailwind utilities;
+
 :root {
   --admin-primary: #0f3d2e;
   --admin-primary-light: #145a3f;

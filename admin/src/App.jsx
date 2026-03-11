@@ -13,6 +13,7 @@ import Volunteers from './pages/Volunteers';
 import Donations from './pages/Donations';
 import Newsletter from './pages/Newsletter';
 import EventRegistrations from './pages/EventRegistrations';
+import EventGallery from './pages/EventGallery';
 import './App.css';
 
 export default function App() {
@@ -21,6 +22,8 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route path="/admin/login" element={<Login />} />
+          {/* Public-facing gallery — no auth required */}
+          <Route path="/admin/gallery" element={<EventGallery />} />
           <Route
             path="/admin"
             element={

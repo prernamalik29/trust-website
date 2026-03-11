@@ -274,3 +274,30 @@ export async function getPendingEventRegsCount() {
     return 0;
   }
 }
+
+// ============ COMPLETED EVENTS (Public Gallery) ============
+const completedEventsRef = collection(db, 'completedEvents');
+
+export async function getCompletedEvents() {
+  try {
+    const q = query(completedEventsRef, orderBy('date', 'desc'));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+  } catch {
+    // Fallback without ordering if the Firestore index isn't created yet
+    const snapshot = await getDocs(completedEventsRef);
+    return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+  }
+}
+
+export async function addCompletedEvent(data) {
+  return addDoc(completedEventsRef, { ...data, createdAt: serverTimestamp() });
+}
+
+export async function updateCompletedEvent(id, data) {
+  return updateDoc(doc(db, 'completedEvents', id), { ...data, updatedAt: serverTimestamp() });
+}
+
+export async function deleteCompletedEvent(id) {
+  return deleteDoc(doc(db, 'completedEvents', id));
+}
