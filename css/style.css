@@ -4544,3 +4544,468 @@ input, textarea {
         padding: 16px 18px;
     }
 }
+
+/* =============================================
+   EVENT GALLERY PAGE
+   ============================================= */
+
+/* ── Event Section Wrapper ── */
+.eg-event-section {
+    padding: 0 0 var(--section-padding) 0;
+}
+
+/* ── Event Header (poster + info side-by-side) ── */
+.eg-event-header {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 40px;
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-bottom: 70px;
+}
+
+.eg-event-poster {
+    position: relative;
+    overflow: hidden;
+}
+
+.eg-event-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.eg-event-info {
+    padding: 35px 35px 35px 0;
+}
+
+.eg-event-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.eg-event-badge i {
+    margin-right: 6px;
+}
+
+.eg-event-info h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.eg-event-subtitle {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin-top: 4px;
+}
+
+.eg-event-info > p {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.eg-event-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.eg-meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.eg-meta-item i {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.eg-meta-item strong {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-muted);
+    margin-bottom: 2px;
+}
+
+.eg-meta-item span {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.eg-event-highlights {
+    background: var(--color-grey-light);
+    border-radius: var(--radius-sm);
+    padding: 18px 22px;
+}
+
+.eg-event-highlights h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.eg-event-highlights h4 i {
+    color: var(--color-secondary);
+    margin-right: 6px;
+}
+
+.eg-event-highlights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.eg-event-highlights li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 0.88rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+.eg-event-highlights li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+/* ── Section Label (sub-headings inside an event) ── */
+.eg-section-label {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.eg-section-label i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    color: var(--color-primary-dark);
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+}
+
+.eg-section-label h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.eg-section-label p {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ── Photo Grid ── */
+.eg-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 70px;
+}
+
+.eg-photo-card {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.eg-photo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.eg-photo-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.eg-photo-card:hover img {
+    transform: scale(1.08);
+}
+
+.eg-photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 61, 46, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.eg-photo-card:hover .eg-photo-overlay {
+    opacity: 1;
+}
+
+.eg-photo-overlay i {
+    font-size: 1.8rem;
+    color: var(--color-white);
+    background: rgba(249, 176, 0, 0.85);
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* ── Results Grid (side-by-side result images) ── */
+.eg-results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.eg-result-card {
+    position: relative;
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.eg-result-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.eg-result-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--color-secondary);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.eg-result-badge i {
+    margin-right: 5px;
+}
+
+.eg-result-card img {
+    width: 100%;
+    display: block;
+}
+
+/* ── CTA Buttons Row ── */
+.eg-cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+/* ── Lightbox ── */
+.eg-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+}
+
+.eg-lightbox.active {
+    display: flex;
+}
+
+.eg-lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eg-lightbox-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 50px rgba(0,0,0,0.5);
+    object-fit: contain;
+}
+
+.eg-lightbox-caption {
+    color: var(--color-white);
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 16px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.eg-lightbox-close,
+.eg-lightbox-prev,
+.eg-lightbox-next {
+    position: absolute;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background var(--transition-fast);
+}
+
+.eg-lightbox-close:hover,
+.eg-lightbox-prev:hover,
+.eg-lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.eg-lightbox-close {
+    top: 20px;
+    right: 20px;
+}
+
+.eg-lightbox-prev {
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.eg-lightbox-next {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+/* ── Gallery CTA Banner ── */
+.eg-gallery-cta {
+    background: var(--color-grey-light);
+    border: 2px dashed var(--color-secondary);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.eg-gallery-cta h3 {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.eg-gallery-cta p {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ── Responsive — Tablet ── */
+@media (max-width: 992px) {
+    .eg-event-header {
+        grid-template-columns: 1fr;
+    }
+
+    .eg-event-poster img {
+        max-height: 400px;
+    }
+
+    .eg-event-info {
+        padding: 30px;
+    }
+
+    .eg-photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .eg-photo-card img {
+        height: 220px;
+    }
+}
+
+/* ── Responsive — Mobile ── */
+@media (max-width: 600px) {
+    .eg-event-info h2 {
+        font-size: 1.35rem;
+    }
+
+    .eg-event-meta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eg-photo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eg-photo-card img {
+        height: 240px;
+    }
+
+    .eg-results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eg-lightbox-prev {
+        left: 8px;
+    }
+
+    .eg-lightbox-next {
+        right: 8px;
+    }
+
+    .eg-lightbox-close {
+        top: 10px;
+        right: 10px;
+    }
+}
